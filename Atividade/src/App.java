@@ -36,8 +36,63 @@ public class App {
             case "2":
                 Listar();
                 break;
+            case "3":
+                Buscar();
+                break;
         }
         leia.close();
+    }
+
+    /**
+     * 
+     */
+    private static void Buscar() {
+        var leia = new Scanner(System.in);
+        var arquivoExistente = new File(Caminho());
+        if (arquivoExistente.exists() == false) {
+            System.out.println(
+                    "Infelizmente não foi encontrado nenhum registro cadastrado salvo, cadastre um usuário antes de prosseguir.\nEscolha uma das opcões a seguir e aperte enter: \n1- Leve-me para cadastrar um usuário\n2- Menu \n3- Sair da aplicacão");
+            String operador = leia.next();
+            switch (operador) {
+                case "1":
+                    Cadastrar();
+                    break;
+                case "2":
+                    Menu();
+                    break;
+                case "3":
+                    Fechar();
+                    break;
+                default:
+                    System.out.println(
+                            "A tecla digitada não corresponde a nenhuma opcão, retornando para o menu.");
+                    Menu();
+
+                    break;
+
+            }
+        }
+        String[] quebra = new String[2];
+        System.out.println("Digite o nome que deseja buscar:");
+        String nome_busca = leia.next();
+        try {
+            var path = Paths.get(Caminho());
+            var linhas = Files.readAllLines(path);
+            for (String string : linhas) {
+                if (!string.contains("Nome")) {
+                    quebra = string.split(",");
+                    var comparacao = quebra[0];
+                    if (comparacao.equals(nome_busca)) {
+                        System.out.println("O nome " + quebra[0] + " está cadastrado");
+                    }
+                }
+
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+
     }
 
     private static void Listar() {
@@ -178,7 +233,7 @@ public class App {
     private static String Caminho() {
         // C:\AtividadeSA3Java\Atividade\src\Registros\Pessoas.txt
         String diretorio = System.getProperty("user.dir");
-        String caminho = diretorio + "/src/Registros/Pessoas.txt";
+        String caminho = diretorio + "/Atividade/src/Registros/Pessoas.txt";
         return caminho;
     }
 }

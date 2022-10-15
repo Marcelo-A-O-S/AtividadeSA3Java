@@ -25,7 +25,7 @@ public class App {
         System.out.println(
                 "-------------------MENU PRINCIPAL-------------------------\nDigite uma das opcões abaixo e aperte enter para prosseguir: \n1- Cadastrar usuários \n2- Listar usuários \n0- Sair");
         String operador = leia.next();
-
+    
         switch (operador) {
             case "0":
                 Fechar();

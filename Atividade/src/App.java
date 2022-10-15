@@ -23,7 +23,7 @@ public class App {
     private static void Menu() {
         var leia = new Scanner(System.in);
         System.out.println(
-                "-------------------MENU PRINCIPAL-------------------------\nDigite uma das opcões abaixo e aperte enter para prosseguir: \n1- Cadastrar usuários \n2- Listar usuários \n0- Sair");
+                "-------------------MENU PRINCIPAL-------------------------\nDigite uma das opcões abaixo e aperte enter para prosseguir: \n1- Cadastrar usuários \n2- Listar usuários\n3-Buscar \n0- Sair");
         String operador = leia.next();
 
         switch (operador) {
@@ -81,6 +81,7 @@ public class App {
             for (String string : linhas) {
                 if (!string.contains("Nome")) {
                     quebra = string.split(",");
+                    System.out.println(quebra[0] + "," + quebra[1]);
                     var comparacao = quebra[0];
                     if (comparacao.equals(nome_busca)) {
                         System.out.println("O nome " + quebra[0] + " está cadastrado");
@@ -233,7 +234,7 @@ public class App {
     private static String Caminho() {
         // C:\AtividadeSA3Java\Atividade\src\Registros\Pessoas.txt
         String diretorio = System.getProperty("user.dir");
-        String caminho = diretorio + "/Atividade/src/Registros/Pessoas.txt";
+        String caminho = diretorio + "/src/Registros/Pessoas.txt";
         return caminho;
     }
 }
